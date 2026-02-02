@@ -52,9 +52,10 @@ function App() {
 
   const handleSubmission = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
     setSubmitStatus('sending');
     setSubmitMessage('');
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
     const name = String(formData.get('name') || '').trim();
     const email = String(formData.get('email') || '').trim();
     const orgName = String(formData.get('orgName') || '').trim();
@@ -97,7 +98,7 @@ function App() {
 
       setSubmitStatus('success');
       setSubmitMessage('Thanks! Your update request was sent.');
-      event.currentTarget.reset();
+      form.reset();
     } catch (error) {
       setSubmitStatus('error');
       setSubmitMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
