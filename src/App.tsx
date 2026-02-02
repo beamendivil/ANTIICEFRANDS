@@ -267,7 +267,7 @@ function App() {
 
           <Card className="shadow-sm">
             <CardContent className="p-6 md:p-8">
-              <form onSubmit={handleSubmission} className="space-y-6">
+              <form method="post" onSubmit={handleSubmission} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
