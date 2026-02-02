@@ -2,13 +2,14 @@
 
 ## Form submissions
 
-This project sends the “Submit Updates” form to Formspree.
+This project sends the “Submit Updates” form through a Vercel API route using Resend.
 
-1. Create a form at https://formspree.io
-2. Copy your form endpoint.
-3. Create a local .env file based on .env.example and set:
+1. Create a Resend account and verify a sender.
+2. Create a local .env file based on .env.example and set:
 
-VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/yourFormId
+RESEND_API_KEY=your_resend_api_key
+RESEND_FROM=your_verified_from_address
+RESEND_TO=bea@curatedtucson.com
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

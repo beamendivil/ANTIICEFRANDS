@@ -52,12 +52,6 @@ function App() {
 
   const handleSubmission = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
-    if (!endpoint) {
-      setSubmitStatus('error');
-      setSubmitMessage('Form is not configured yet. Please try again later.');
-      return;
-    }
     setSubmitStatus('sending');
     setSubmitMessage('');
     const formData = new FormData(event.currentTarget);
@@ -70,30 +64,31 @@ function App() {
     const website = String(formData.get('website') || '').trim();
     const description = String(formData.get('description') || '').trim();
     const changes = String(formData.get('changes') || '').trim();
-    const payload = new FormData();
-    payload.append('name', name);
-    payload.append('email', email);
-    payload.append('orgName', orgName);
-    payload.append('city', city);
-    payload.append('state', state);
-    payload.append('category', category);
-    payload.append('website', website);
-    payload.append('description', description);
-    payload.append('changes', changes);
-    payload.append('_subject', 'Directory update request');
+    const payload = {
+      name,
+      email,
+      orgName,
+      city,
+      state,
+      category,
+      website,
+      description,
+      changes,
+    };
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch('/api/submit', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: payload,
+        body: JSON.stringify(payload),
       });
       const responseData = await response.json().catch(() => null);
 
       if (!response.ok) {
-        const errorMessage = responseData?.errors?.[0]?.message || 'Request failed.';
+        const errorMessage = responseData?.message || 'Request failed.';
         throw new Error(errorMessage);
       }
 
