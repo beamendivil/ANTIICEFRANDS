@@ -2,14 +2,9 @@
 
 ## Form submissions
 
-This project sends the “Submit Updates” form through a Vercel API route using Resend.
+This project sends the “Submit Updates” form via FormSubmit (no backend needed).
 
-1. Create a Resend account and verify a sender.
-2. Create a local .env file based on .env.example and set:
-
-RESEND_API_KEY=your_resend_api_key
-RESEND_FROM=your_verified_from_address
-RESEND_TO=bea@curatedtucson.com
+Submissions are sent to bea@curatedtucson.com and the form stays on the site.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

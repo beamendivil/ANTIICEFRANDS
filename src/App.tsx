@@ -74,10 +74,13 @@ function App() {
       website,
       description,
       changes,
+      _subject: 'Directory update request',
+      _captcha: 'true',
+      _template: 'table',
     };
 
     try {
-      const response = await fetch('/api/submit', {
+      const response = await fetch('https://formsubmit.co/ajax/bea@curatedtucson.com', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
