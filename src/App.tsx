@@ -185,6 +185,7 @@ function App() {
             <p className="text-xl md:text-2xl mb-8 text-red-100">
               A comprehensive resource of organizations, legal services, and businesses 
               standing in solidarity with immigrant communities across the United States.
+              A new initiative serving the Tucson, Arizona community and the 520 area.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button 
