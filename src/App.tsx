@@ -50,7 +50,7 @@ function App() {
 
   const handleSubmission = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const submissionEmail = 'antiiceallies@proton.me';
+    const submissionEmail = 'bea@curatedtucson.com';
     const formData = new FormData(event.currentTarget);
     const name = String(formData.get('name') || '').trim();
     const email = String(formData.get('email') || '').trim();
