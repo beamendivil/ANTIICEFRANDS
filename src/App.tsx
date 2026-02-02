@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, type FormEvent } from 'react';
 import { 
   Search, 
   MapPin, 
@@ -47,6 +47,43 @@ function App() {
   const [selectedAlly, setSelectedAlly] = useState<Ally | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
+
+  const handleSubmission = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const submissionEmail = 'antiiceallies@proton.me';
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get('name') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const orgName = String(formData.get('orgName') || '').trim();
+    const city = String(formData.get('city') || '').trim();
+    const state = String(formData.get('state') || '').trim();
+    const category = String(formData.get('category') || '').trim();
+    const website = String(formData.get('website') || '').trim();
+    const description = String(formData.get('description') || '').trim();
+    const changes = String(formData.get('changes') || '').trim();
+
+    const subject = encodeURIComponent('Directory update request');
+    const body = encodeURIComponent(
+      [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        orgName ? `Organization/Business: ${orgName}` : '',
+        city ? `City: ${city}` : '',
+        state ? `State: ${state}` : '',
+        category ? `Category: ${category}` : '',
+        website ? `Website: ${website}` : '',
+        description ? `Description: ${description}` : '',
+        '',
+        'Requested changes:',
+        changes,
+      ]
+        .filter(Boolean)
+        .join('\n')
+    );
+
+    window.location.href = `mailto:${submissionEmail}?subject=${subject}&body=${body}`;
+    event.currentTarget.reset();
+  };
 
   // Filter allies based on search and filters
   const filteredAllies = useMemo(() => {
@@ -109,6 +146,7 @@ function App() {
               <button onClick={() => scrollToSection('directory')} className="text-gray-700 hover:text-red-600 font-medium">Directory</button>
               <button onClick={() => scrollToSection('tucson')} className="text-gray-700 hover:text-red-600 font-medium">Tucson Allies</button>
               <button onClick={() => scrollToSection('resources')} className="text-gray-700 hover:text-red-600 font-medium">Resources</button>
+              <button onClick={() => scrollToSection('submit')} className="text-gray-700 hover:text-red-600 font-medium">Submit Updates</button>
               <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-red-600 font-medium">About</button>
             </div>
 
@@ -130,6 +168,7 @@ function App() {
               <button onClick={() => scrollToSection('directory')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Directory</button>
               <button onClick={() => scrollToSection('tucson')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Tucson Allies</button>
               <button onClick={() => scrollToSection('resources')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Resources</button>
+              <button onClick={() => scrollToSection('submit')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Submit Updates</button>
               <button onClick={() => scrollToSection('about')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About</button>
             </div>
           </div>
@@ -153,6 +192,12 @@ function App() {
                 className="bg-white text-red-700 hover:bg-red-50 font-semibold px-8 py-3 text-lg"
               >
                 Find Allies
+              </Button>
+              <Button 
+                onClick={() => scrollToSection('submit')}
+                className="bg-red-900/30 text-white hover:bg-red-900/50 border border-white/40 font-semibold px-8 py-3 text-lg"
+              >
+                Submit an Update
               </Button>
               <Button 
                 onClick={() => scrollToSection('tucson')}
@@ -183,6 +228,93 @@ function App() {
               <div className="text-red-100 text-sm md:text-base">National Organizations</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Submit Updates Section */}
+      <section id="submit" className="py-12 md:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Submit Updates or New Listings
+            </h2>
+            <p className="text-lg text-gray-600">
+              Help keep this directory accurate. Share corrections, new allies, or updates and we’ll review them.
+            </p>
+          </div>
+
+          <Card className="shadow-sm">
+            <CardContent className="p-6 md:p-8">
+              <form onSubmit={handleSubmission} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                    <Input name="name" placeholder="Full name" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Your Email</label>
+                    <Input name="email" type="email" placeholder="you@email.com" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Organization or Business</label>
+                    <Input name="orgName" placeholder="Organization name" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Website (optional)</label>
+                    <Input name="website" type="url" placeholder="https://" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
+                    <Input name="city" placeholder="City" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">State</label>
+                    <Input name="state" placeholder="State" />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                    <select
+                      name="category"
+                      className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    >
+                      <option value="">Select a category</option>
+                      {categories.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Short Description (optional)</label>
+                    <textarea
+                      name="description"
+                      rows={3}
+                      className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+                      placeholder="What services or support do they provide?"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Requested Changes</label>
+                    <textarea
+                      name="changes"
+                      rows={5}
+                      required
+                      className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+                      placeholder="Please describe the updates or new listing details."
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                  <p className="text-sm text-gray-500">
+                    Submissions open your email app so you can send details directly to the directory team.
+                  </p>
+                  <Button type="submit" className="bg-red-600 hover:bg-red-700">
+                    Submit Update
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
@@ -643,6 +775,11 @@ function App() {
                 If you know of an organization or business that should be included in this directory, 
                 or if you need to update existing information, please contact us.
               </p>
+              <div className="mt-4">
+                <Button onClick={() => scrollToSection('submit')} className="bg-red-600 hover:bg-red-700">
+                  Submit a Change
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -668,6 +805,7 @@ function App() {
                 <li><button onClick={() => scrollToSection('directory')} className="hover:text-white">Directory</button></li>
                 <li><button onClick={() => scrollToSection('tucson')} className="hover:text-white">Tucson Allies</button></li>
                 <li><button onClick={() => scrollToSection('resources')} className="hover:text-white">Resources</button></li>
+                <li><button onClick={() => scrollToSection('submit')} className="hover:text-white">Submit Updates</button></li>
                 <li><button onClick={() => scrollToSection('about')} className="hover:text-white">About</button></li>
               </ul>
             </div>
