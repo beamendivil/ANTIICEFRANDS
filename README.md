@@ -1,5 +1,15 @@
 # React + TypeScript + Vite
 
+## Form submissions
+
+This project sends the “Submit Updates” form to Formspree.
+
+1. Create a form at https://formspree.io
+2. Copy your form endpoint.
+3. Create a local .env file based on .env.example and set:
+
+VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/yourFormId
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

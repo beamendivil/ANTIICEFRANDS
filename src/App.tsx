@@ -47,10 +47,19 @@ function App() {
   const [selectedAlly, setSelectedAlly] = useState<Ally | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
 
-  const handleSubmission = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmission = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const submissionEmail = 'bea@curatedtucson.com';
+    const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
+    if (!endpoint) {
+      setSubmitStatus('error');
+      setSubmitMessage('Form is not configured yet. Please try again later.');
+      return;
+    }
+    setSubmitStatus('sending');
+    setSubmitMessage('');
     const formData = new FormData(event.currentTarget);
     const name = String(formData.get('name') || '').trim();
     const email = String(formData.get('email') || '').trim();
@@ -61,28 +70,39 @@ function App() {
     const website = String(formData.get('website') || '').trim();
     const description = String(formData.get('description') || '').trim();
     const changes = String(formData.get('changes') || '').trim();
+    const payload = {
+      name,
+      email,
+      orgName,
+      city,
+      state,
+      category,
+      website,
+      description,
+      changes,
+    };
 
-    const subject = encodeURIComponent('Directory update request');
-    const body = encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        orgName ? `Organization/Business: ${orgName}` : '',
-        city ? `City: ${city}` : '',
-        state ? `State: ${state}` : '',
-        category ? `Category: ${category}` : '',
-        website ? `Website: ${website}` : '',
-        description ? `Description: ${description}` : '',
-        '',
-        'Requested changes:',
-        changes,
-      ]
-        .filter(Boolean)
-        .join('\n')
-    );
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
-    window.location.href = `mailto:${submissionEmail}?subject=${subject}&body=${body}`;
-    event.currentTarget.reset();
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      setSubmitStatus('success');
+      setSubmitMessage('Thanks! Your update request was sent.');
+      event.currentTarget.reset();
+    } catch {
+      setSubmitStatus('error');
+      setSubmitMessage('Something went wrong. Please try again.');
+    }
   };
 
   // Filter allies based on search and filters
@@ -307,11 +327,26 @@ function App() {
 
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                   <p className="text-sm text-gray-500">
-                    Submissions open your email app so you can send details directly to the directory team.
+                    Submissions are sent directly to the directory team.
                   </p>
-                  <Button type="submit" className="bg-red-600 hover:bg-red-700">
-                    Submit Update
-                  </Button>
+                  <div className="flex flex-col items-start md:items-end gap-2">
+                    <Button
+                      type="submit"
+                      className="bg-red-600 hover:bg-red-700"
+                      disabled={submitStatus === 'sending'}
+                    >
+                      {submitStatus === 'sending' ? 'Sending...' : 'Submit Update'}
+                    </Button>
+                    {submitMessage && (
+                      <p
+                        className={`text-sm ${
+                          submitStatus === 'success' ? 'text-green-600' : 'text-red-600'
+                        }`}
+                      >
+                        {submitMessage}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </form>
             </CardContent>
