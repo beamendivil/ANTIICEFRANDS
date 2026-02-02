@@ -70,38 +70,39 @@ function App() {
     const website = String(formData.get('website') || '').trim();
     const description = String(formData.get('description') || '').trim();
     const changes = String(formData.get('changes') || '').trim();
-    const payload = {
-      name,
-      email,
-      orgName,
-      city,
-      state,
-      category,
-      website,
-      description,
-      changes,
-    };
+    const payload = new FormData();
+    payload.append('name', name);
+    payload.append('email', email);
+    payload.append('orgName', orgName);
+    payload.append('city', city);
+    payload.append('state', state);
+    payload.append('category', category);
+    payload.append('website', website);
+    payload.append('description', description);
+    payload.append('changes', changes);
+    payload.append('_subject', 'Directory update request');
 
     try {
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: payload,
       });
+      const responseData = await response.json().catch(() => null);
 
       if (!response.ok) {
-        throw new Error('Request failed');
+        const errorMessage = responseData?.errors?.[0]?.message || 'Request failed.';
+        throw new Error(errorMessage);
       }
 
       setSubmitStatus('success');
       setSubmitMessage('Thanks! Your update request was sent.');
       event.currentTarget.reset();
-    } catch {
+    } catch (error) {
       setSubmitStatus('error');
-      setSubmitMessage('Something went wrong. Please try again.');
+      setSubmitMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
     }
   };
 
