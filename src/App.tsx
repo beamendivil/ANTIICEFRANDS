@@ -173,12 +173,42 @@ function App() {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
-              <button onClick={() => scrollToSection('home')} className="text-gray-700 hover:text-red-600 font-medium">Home</button>
-              <button onClick={() => scrollToSection('directory')} className="text-gray-700 hover:text-red-600 font-medium">Directory</button>
-              <button onClick={() => scrollToSection('tucson')} className="text-gray-700 hover:text-red-600 font-medium">Tucson Allies</button>
-              <button onClick={() => scrollToSection('resources')} className="text-gray-700 hover:text-red-600 font-medium">Resources</button>
-              <button onClick={() => scrollToSection('submit')} className="text-gray-700 hover:text-red-600 font-medium">Submit Updates</button>
-              <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-red-600 font-medium">About</button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('home')} className="text-gray-700 hover:text-red-600 font-medium">Home</button>
+                </TooltipTrigger>
+                <TooltipContent>Inicio</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('directory')} className="text-gray-700 hover:text-red-600 font-medium">Directory</button>
+                </TooltipTrigger>
+                <TooltipContent>Directorio</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('tucson')} className="text-gray-700 hover:text-red-600 font-medium">Tucson Allies</button>
+                </TooltipTrigger>
+                <TooltipContent>Aliados en Tucson</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('resources')} className="text-gray-700 hover:text-red-600 font-medium">Resources</button>
+                </TooltipTrigger>
+                <TooltipContent>Recursos</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('submit')} className="text-gray-700 hover:text-red-600 font-medium">Submit Updates</button>
+                </TooltipTrigger>
+                <TooltipContent>Enviar actualizaciones</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-red-600 font-medium">About</button>
+                </TooltipTrigger>
+                <TooltipContent>Acerca de</TooltipContent>
+              </Tooltip>
             </div>
 
             {/* Mobile Menu Button */}
@@ -195,12 +225,42 @@ function App() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-white border-t">
             <div className="px-4 py-3 space-y-2">
-              <button onClick={() => scrollToSection('home')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Home</button>
-              <button onClick={() => scrollToSection('directory')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Directory</button>
-              <button onClick={() => scrollToSection('tucson')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Tucson Allies</button>
-              <button onClick={() => scrollToSection('resources')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Resources</button>
-              <button onClick={() => scrollToSection('submit')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Submit Updates</button>
-              <button onClick={() => scrollToSection('about')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About</button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('home')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Home</button>
+                </TooltipTrigger>
+                <TooltipContent>Inicio</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('directory')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Directory</button>
+                </TooltipTrigger>
+                <TooltipContent>Directorio</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('tucson')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Tucson Allies</button>
+                </TooltipTrigger>
+                <TooltipContent>Aliados en Tucson</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('resources')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Resources</button>
+                </TooltipTrigger>
+                <TooltipContent>Recursos</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('submit')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Submit Updates</button>
+                </TooltipTrigger>
+                <TooltipContent>Enviar actualizaciones</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => scrollToSection('about')} className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About</button>
+                </TooltipTrigger>
+                <TooltipContent>Acerca de</TooltipContent>
+              </Tooltip>
             </div>
           </div>
         )}
