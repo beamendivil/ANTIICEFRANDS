@@ -252,105 +252,92 @@ function App() {
         </div>
       </section>
 
-      {/* Submit Updates Section */}
-      <section id="submit" className="py-12 md:py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Tucson Section */}
+      <section id="tucson" className="py-12 md:py-16 bg-red-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Submit Updates or New Listings
+              Tucson Anti-ICE Allies
             </h2>
-            <p className="text-lg text-gray-600">
-              Help keep this directory accurate. Share corrections, new allies, or updates and we’ll review them.
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Highlighting local businesses and organizations in Tucson, Arizona that have 
+              demonstrated solidarity with immigrant communities.
             </p>
           </div>
 
-          <Card className="shadow-sm">
-            <CardContent className="p-6 md:p-8">
-              <form method="post" onSubmit={handleSubmission} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-                    <Input name="name" placeholder="Full name" required />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Your Email</label>
-                    <Input name="email" type="email" placeholder="you@email.com" required />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Organization or Business</label>
-                    <Input name="orgName" placeholder="Organization name" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Website (optional)</label>
-                    <Input name="website" type="url" placeholder="https://" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
-                    <Input name="city" placeholder="City" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">State</label>
-                    <Input name="state" placeholder="State" />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                    <select
-                      name="category"
-                      className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
-                    >
-                      <option value="">Select a category</option>
-                      {categories.map((cat) => (
-                        <option key={cat} value={cat}>{cat}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Short Description (optional)</label>
-                    <textarea
-                      name="description"
-                      rows={3}
-                      className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
-                      placeholder="What services or support do they provide?"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Requested Changes</label>
-                    <textarea
-                      name="changes"
-                      rows={5}
-                      required
-                      className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
-                      placeholder="Please describe the updates or new listing details."
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                  <p className="text-sm text-gray-500">
-                    Submissions are sent directly to the directory team.
-                  </p>
-                  <div className="flex flex-col items-start md:items-end gap-2">
-                    <Button
-                      type="submit"
-                      className="bg-red-600 hover:bg-red-700"
-                      disabled={submitStatus === 'sending'}
-                    >
-                      {submitStatus === 'sending' ? 'Sending...' : 'Submit Update'}
-                    </Button>
-                    {submitMessage && (
-                      <p
-                        className={`text-sm ${
-                          submitStatus === 'success' ? 'text-green-600' : 'text-red-600'
-                        }`}
-                      >
-                        {submitMessage}
+          {/* Tucson Organizations */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <Heart className="h-6 w-6 text-red-600" />
+              Tucson Organizations & Services
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getTucsonOrganizations().slice(0, 6).map((ally) => (
+                <Card 
+                  key={ally.id} 
+                  className="cursor-pointer hover:shadow-lg transition-shadow bg-white"
+                  onClick={() => setSelectedAlly(ally)}
+                >
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg">{ally.name}</CardTitle>
+                    <Badge variant="outline" className={categoryColors[ally.category] || 'bg-gray-100'}>
+                      {ally.category}
+                    </Badge>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+                      {ally.description}
+                    </p>
+                    {ally.phone && (
+                      <p className="text-sm text-gray-500 flex items-center gap-1">
+                        <Phone className="h-4 w-4" />
+                        {ally.phone}
                       </p>
                     )}
-                  </div>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="text-center mt-6">
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setSelectedState('Arizona');
+                  setSelectedCategory('All');
+                  scrollToSection('directory');
+                }}
+              >
+                View All Tucson Organizations
+              </Button>
+            </div>
+          </div>
+
+          {/* Tucson Businesses */}
+          <div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <Users className="h-6 w-6 text-red-600" />
+              Tucson Businesses (Closed Jan 30, 2026)
+            </h3>
+            <p className="text-gray-600 mb-6">
+              These local businesses closed their doors on January 30, 2026 in solidarity with 
+              the national anti-ICE protest, demonstrating their commitment to immigrant rights 
+              and community solidarity.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {getTucsonBusinesses().map((business) => (
+                <Card 
+                  key={business.id} 
+                  className="cursor-pointer hover:shadow-md transition-shadow bg-white"
+                  onClick={() => setSelectedAlly(business)}
+                >
+                  <CardContent className="p-4">
+                    <h4 className="font-semibold text-sm mb-1 line-clamp-2">{business.name}</h4>
+                    <p className="text-xs text-gray-500 line-clamp-1">{business.services[0]}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -495,95 +482,6 @@ function App() {
               <p className="text-gray-500 text-lg">No results found. Try adjusting your search or filters.</p>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Tucson Section */}
-      <section id="tucson" className="py-12 md:py-16 bg-red-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Tucson Anti-ICE Allies
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Highlighting local businesses and organizations in Tucson, Arizona that have 
-              demonstrated solidarity with immigrant communities.
-            </p>
-          </div>
-
-          {/* Tucson Organizations */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <Heart className="h-6 w-6 text-red-600" />
-              Tucson Organizations & Services
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getTucsonOrganizations().slice(0, 6).map((ally) => (
-                <Card 
-                  key={ally.id} 
-                  className="cursor-pointer hover:shadow-lg transition-shadow bg-white"
-                  onClick={() => setSelectedAlly(ally)}
-                >
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-lg">{ally.name}</CardTitle>
-                    <Badge variant="outline" className={categoryColors[ally.category] || 'bg-gray-100'}>
-                      {ally.category}
-                    </Badge>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-gray-600 line-clamp-2 mb-3">
-                      {ally.description}
-                    </p>
-                    {ally.phone && (
-                      <p className="text-sm text-gray-500 flex items-center gap-1">
-                        <Phone className="h-4 w-4" />
-                        {ally.phone}
-                      </p>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <div className="text-center mt-6">
-              <Button 
-                variant="outline" 
-                onClick={() => {
-                  setSelectedState('Arizona');
-                  setSelectedCategory('All');
-                  scrollToSection('directory');
-                }}
-              >
-                View All Tucson Organizations
-              </Button>
-            </div>
-          </div>
-
-          {/* Tucson Businesses */}
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <Users className="h-6 w-6 text-red-600" />
-              Tucson Businesses (Closed Jan 30, 2026)
-            </h3>
-            <p className="text-gray-600 mb-6">
-              These local businesses closed their doors on January 30, 2026 in solidarity with 
-              the national anti-ICE protest, demonstrating their commitment to immigrant rights 
-              and community solidarity.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {getTucsonBusinesses().map((business) => (
-                <Card 
-                  key={business.id} 
-                  className="cursor-pointer hover:shadow-md transition-shadow bg-white"
-                  onClick={() => setSelectedAlly(business)}
-                >
-                  <CardContent className="p-4">
-                    <h4 className="font-semibold text-sm mb-1 line-clamp-2">{business.name}</h4>
-                    <p className="text-xs text-gray-500 line-clamp-1">{business.services[0]}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -745,6 +643,108 @@ function App() {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Submit Updates Section */}
+      <section id="submit" className="py-12 md:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Submit Updates or New Listings
+            </h2>
+            <p className="text-lg text-gray-600">
+              Help keep this directory accurate. Share corrections, new allies, or updates and we’ll review them.
+            </p>
+          </div>
+
+          <Card className="shadow-sm">
+            <CardContent className="p-6 md:p-8">
+              <form method="post" onSubmit={handleSubmission} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                    <Input name="name" placeholder="Full name" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Your Email</label>
+                    <Input name="email" type="email" placeholder="you@email.com" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Organization or Business</label>
+                    <Input name="orgName" placeholder="Organization name" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Website (optional)</label>
+                    <Input name="website" type="url" placeholder="https://" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">City</label>
+                    <Input name="city" placeholder="City" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">State</label>
+                    <Input name="state" placeholder="State" />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                    <select
+                      name="category"
+                      className="w-full h-10 px-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    >
+                      <option value="">Select a category</option>
+                      {categories.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Short Description (optional)</label>
+                    <textarea
+                      name="description"
+                      rows={3}
+                      className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+                      placeholder="What services or support do they provide?"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Requested Changes</label>
+                    <textarea
+                      name="changes"
+                      rows={5}
+                      required
+                      className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+                      placeholder="Please describe the updates or new listing details."
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                  <p className="text-sm text-gray-500">
+                    Submissions are sent directly to the directory team.
+                  </p>
+                  <div className="flex flex-col items-start md:items-end gap-2">
+                    <Button
+                      type="submit"
+                      className="bg-red-600 hover:bg-red-700"
+                      disabled={submitStatus === 'sending'}
+                    >
+                      {submitStatus === 'sending' ? 'Sending...' : 'Submit Update'}
+                    </Button>
+                    {submitMessage && (
+                      <p
+                        className={`text-sm ${
+                          submitStatus === 'success' ? 'text-green-600' : 'text-red-600'
+                        }`}
+                      >
+                        {submitMessage}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </section>
 

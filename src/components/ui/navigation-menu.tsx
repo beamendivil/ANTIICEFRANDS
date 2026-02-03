@@ -5,6 +5,8 @@ import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+/* eslint-disable react-refresh/only-export-components */
+
 function NavigationMenu({
   className,
   children,
