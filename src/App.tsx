@@ -7,29 +7,22 @@ import {
   Globe, 
   Clock, 
   Languages, 
-            <div>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Purpose</h3>
-                </TooltipTrigger>
-                <TooltipContent>
-                  Nuestro propósito
-                </TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <p className="text-gray-700">
-                    This directory was created to help immigrant communities and their allies find 
-                    resources, legal support, and businesses that stand in solidarity with their rights. 
-                    In times of increased immigration enforcement, knowing where to turn for help is 
-                    critical.
-                  </p>
-                </TooltipTrigger>
-                <TooltipContent>
-                  Este directorio fue creado para ayudar a las comunidades inmigrantes y a sus aliados a encontrar recursos, apoyo legal y negocios solidarios con sus derechos. En tiempos de mayor cumplimiento migratorio, es fundamental saber a dónde acudir.
-                </TooltipContent>
-              </Tooltip>
-            </div>
+  Info,
+  Heart,
+  Shield,
+  Users,
+  BookOpen,
+  AlertCircle,
+  Menu,
+  X,
+  ChevronDown,
+  ChevronUp,
+  ExternalLink,
+  Filter
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
