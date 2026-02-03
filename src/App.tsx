@@ -130,6 +130,15 @@ function App() {
     nationalOrgs: getNationalOrganizations().length,
   }), []);
 
+  const tucsonDescriptionEs: Record<string, string> = {
+    'tucson-1': 'Clínica legal comunitaria y pro bono fundada en 2011, que colabora con voluntariado y abogados para prevenir deportaciones y mantener unidas a las familias en el sur de Arizona.',
+    'tucson-2': 'Ofrece servicios legales gratuitos y educación de “conozca sus derechos” a personas inmigrantes detenidas en centros de detención de Arizona.',
+    'tucson-3': 'Brinda oportunidades para que personas refugiadas, asiladas e inmigrantes prosperen en EE. UU. mediante servicios integrales.',
+    'tucson-4': 'Ofrece consultas y servicios de inmigración gratuitos para personas inmigrantes a través de clínicas legales.',
+    'tucson-5': 'Ofrece servicios legales de inmigración, incluyendo visas basadas en la familia y asistencia para la ciudadanía.',
+    'tucson-6': 'Brinda asistencia legal a personas de bajos ingresos, incluyendo servicios de inmigración para víctimas de delitos.',
+  };
+
   // Category colors
   const categoryColors: Record<string, string> = {
     'Legal Services': 'bg-blue-100 text-blue-800 border-blue-200',
@@ -300,9 +309,16 @@ function App() {
                     </Badge>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600 line-clamp-2 mb-3">
-                      {ally.description}
-                    </p>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+                          {ally.description}
+                        </p>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        {tucsonDescriptionEs[ally.id] || ally.description}
+                      </TooltipContent>
+                    </Tooltip>
                     {ally.phone && (
                       <p className="text-sm text-gray-500 flex items-center gap-1">
                         <Phone className="h-4 w-4" />
