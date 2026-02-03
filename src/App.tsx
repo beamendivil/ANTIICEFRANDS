@@ -222,8 +222,7 @@ function App() {
               </Button>
               <Button 
                 onClick={() => scrollToSection('tucson')}
-                variant="outline"
-                className="border-white text-white hover:bg-red-700 font-semibold px-8 py-3 text-lg"
+                className="bg-white text-red-700 hover:bg-red-50 font-semibold px-8 py-3 text-lg"
               >
                 Tucson Businesses
               </Button>
