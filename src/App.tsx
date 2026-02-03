@@ -27,6 +27,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { 
   allies, 
   categories, 
@@ -150,7 +151,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <TooltipProvider>
+      <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
       <nav className="sticky top-0 z-40 bg-white border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -491,13 +493,17 @@ function App() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Know Your Rights Resources
             </h2>
-            <p
-              className="text-lg text-gray-600 max-w-2xl mx-auto"
-              title="Información y recursos esenciales para ayudarte a entender y ejercer tus derechos durante encuentros con inmigración."
-            >
-              Essential information and resources to help you understand and exercise your rights 
-              during encounters with immigration enforcement.
-            </p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Essential information and resources to help you understand and exercise your rights 
+                  during encounters with immigration enforcement.
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>
+                Información y recursos esenciales para ayudarte a entender y ejercer tus derechos durante encuentros con inmigración.
+              </TooltipContent>
+            </Tooltip>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -510,13 +516,17 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p
-                  className="text-gray-700 mb-4"
-                  title="Tarjetas imprimibles que te ayudan a ejercer tus derechos constitucionales durante encuentros con ICE. Disponible en más de 20 idiomas."
-                >
-                  Printable cards that help you assert your constitutional rights during encounters 
-                  with ICE. Available in 20+ languages.
-                </p>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-gray-700 mb-4">
+                      Printable cards that help you assert your constitutional rights during encounters 
+                      with ICE. Available in 20+ languages.
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Tarjetas imprimibles que te ayudan a ejercer tus derechos constitucionales durante encuentros con ICE. Disponible en más de 20 idiomas.
+                  </TooltipContent>
+                </Tooltip>
                 <Button 
                   variant="outline" 
                   className="w-full"
@@ -537,13 +547,17 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p
-                  className="text-gray-700 mb-4"
-                  title="Guías completas sobre tus derechos en casa, en el trabajo, en público y durante encuentros con ICE. Disponibles en varios idiomas."
-                >
-                  Comprehensive guides on your rights at home, at work, in public, and during 
-                  ICE encounters. Available in multiple languages.
-                </p>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-gray-700 mb-4">
+                      Comprehensive guides on your rights at home, at work, in public, and during 
+                      ICE encounters. Available in multiple languages.
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Guías completas sobre tus derechos en casa, en el trabajo, en público y durante encuentros con ICE. Disponibles en varios idiomas.
+                  </TooltipContent>
+                </Tooltip>
                 <Button 
                   variant="outline" 
                   className="w-full"
@@ -564,13 +578,17 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p
-                  className="text-gray-700 mb-4"
-                  title="Crea un plan de seguridad familiar, designa contactos de emergencia y prepara documentos importantes en caso de detención."
-                >
-                  Create a family safety plan, designate emergency contacts, and prepare important 
-                  documents in case of detention.
-                </p>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-gray-700 mb-4">
+                      Create a family safety plan, designate emergency contacts, and prepare important 
+                      documents in case of detention.
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Crea un plan de seguridad familiar, designa contactos de emergencia y prepara documentos importantes en caso de detención.
+                  </TooltipContent>
+                </Tooltip>
                 <Button 
                   variant="outline" 
                   className="w-full"
@@ -591,13 +609,17 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p
-                  className="text-gray-700 mb-4"
-                  title="Encuentra proveedores de servicios legales de inmigración gratuitos y de bajo costo en tu área a través del directorio de Immigration Advocates Network."
-                >
-                  Find free and low-cost immigration legal services providers in your area through 
-                  the Immigration Advocates Network directory.
-                </p>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-gray-700 mb-4">
+                      Find free and low-cost immigration legal services providers in your area through 
+                      the Immigration Advocates Network directory.
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Encuentra proveedores de servicios legales de inmigración gratuitos y de bajo costo en tu área a través del directorio de Immigration Advocates Network.
+                  </TooltipContent>
+                </Tooltip>
                 <Button 
                   variant="outline" 
                   className="w-full"
@@ -618,13 +640,17 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p
-                  className="text-gray-700 mb-4"
-                  title="Si ves actividad de ICE en tu comunidad, repórtala a las redes locales de respuesta rápida. En Tucson: llama/envía texto al 520-221-4077."
-                >
-                  If you see ICE activity in your community, report it to local rapid response 
-                  networks. In Tucson: Call/Text 520-221-4077
-                </p>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-gray-700 mb-4">
+                      If you see ICE activity in your community, report it to local rapid response 
+                      networks. In Tucson: Call/Text 520-221-4077
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Si ves actividad de ICE en tu comunidad, repórtala a las redes locales de respuesta rápida. En Tucson: llama/envía texto al 520-221-4077.
+                  </TooltipContent>
+                </Tooltip>
                 <Button 
                   variant="outline" 
                   className="w-full"
@@ -645,13 +671,17 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p
-                  className="text-gray-700 mb-4"
-                  title="Usa el localizador en línea de detenidos de ICE para encontrar a una persona detenida por inmigración."
-                >
-                  Use ICE's online detainee locator system to find someone who has been detained 
-                  by immigration enforcement.
-                </p>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-gray-700 mb-4">
+                      Use ICE's online detainee locator system to find someone who has been detained 
+                      by immigration enforcement.
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    Usa el localizador en línea de detenidos de ICE para encontrar a una persona detenida por inmigración.
+                  </TooltipContent>
+                </Tooltip>
                 <Button 
                   variant="outline" 
                   className="w-full"
@@ -715,15 +745,19 @@ function App() {
                       <option value="">Select a category</option>
                       {categories.map((cat) => (
                         <option key={cat} value={cat}>{cat}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Short Description (optional)</label>
-                    <textarea
-                      name="description"
-                      rows={3}
-                      className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <p className="text-gray-700">
+                            This directory was created to help immigrant communities and their allies find 
+                            resources, legal support, and businesses that stand in solidarity with their rights. 
+                            In times of increased immigration enforcement, knowing where to turn for help is 
+                            critical.
+                          </p>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          Este directorio fue creado para ayudar a las comunidades inmigrantes y a sus aliados a encontrar recursos, apoyo legal y negocios solidarios con sus derechos. En tiempos de mayor cumplimiento migratorio, es fundamental saber a dónde acudir.
+                        </TooltipContent>
+                      </Tooltip>
                       placeholder="What services or support do they provide?"
                     />
                   </div>
@@ -819,27 +853,35 @@ function App() {
 
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Disclaimer</h3>
-              <p
-                className="text-gray-700 text-sm"
-                title="Este directorio es solo informativo. La inclusión no constituye asesoría legal ni respaldo. Verifica la información con las organizaciones listadas. Para asesoría legal, consulta con un abogado de inmigración calificado."
-              >
-                This directory is for informational purposes only. Inclusion in this list does not 
-                constitute legal advice or endorsement. Please verify all information directly with 
-                the organizations listed. For legal advice, consult with a qualified immigration attorney.
-              </p>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-gray-700 text-sm">
+                    This directory is for informational purposes only. Inclusion in this list does not 
+                    constitute legal advice or endorsement. Please verify all information directly with 
+                    the organizations listed. For legal advice, consult with a qualified immigration attorney.
+                  </p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Este directorio es solo informativo. La inclusión no constituye asesoría legal ni respaldo. Verifica la información con las organizaciones listadas. Para asesoría legal, consulta con un abogado de inmigración calificado.
+                </TooltipContent>
+              </Tooltip>
             </div>
 
             <Separator />
 
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Add or Update a Listing</h3>
-              <p
-                className="text-gray-700"
-                title="Si conoces una organización o negocio que deba incluirse en este directorio, o necesitas actualizar información existente, contáctanos."
-              >
-                If you know of an organization or business that should be included in this directory, 
-                or if you need to update existing information, please contact us.
-              </p>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-gray-700">
+                    If you know of an organization or business that should be included in this directory, 
+                    or if you need to update existing information, please contact us.
+                  </p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Si conoces una organización o negocio que deba incluirse en este directorio, o necesitas actualizar información existente, contáctanos.
+                </TooltipContent>
+              </Tooltip>
               <div className="mt-4">
                 <Button onClick={() => scrollToSection('submit')} className="bg-red-600 hover:bg-red-700">
                   Submit a Change
@@ -1031,7 +1073,8 @@ function App() {
           )}
         </DialogContent>
       </Dialog>
-    </div>
+      </div>
+    </TooltipProvider>
   );
 }
 
