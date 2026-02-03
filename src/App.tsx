@@ -745,19 +745,15 @@ function App() {
                       <option value="">Select a category</option>
                       {categories.map((cat) => (
                         <option key={cat} value={cat}>{cat}</option>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <p className="text-gray-700">
-                            This directory was created to help immigrant communities and their allies find 
-                            resources, legal support, and businesses that stand in solidarity with their rights. 
-                            In times of increased immigration enforcement, knowing where to turn for help is 
-                            critical.
-                          </p>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          Este directorio fue creado para ayudar a las comunidades inmigrantes y a sus aliados a encontrar recursos, apoyo legal y negocios solidarios con sus derechos. En tiempos de mayor cumplimiento migratorio, es fundamental saber a dónde acudir.
-                        </TooltipContent>
-                      </Tooltip>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Short Description (optional)</label>
+                    <textarea
+                      name="description"
+                      rows={3}
+                      className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
                       placeholder="What services or support do they provide?"
                     />
                   </div>
