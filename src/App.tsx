@@ -7,22 +7,29 @@ import {
   Globe, 
   Clock, 
   Languages, 
-  Info,
-  Heart,
-  Shield,
-  Users,
-  BookOpen,
-  AlertCircle,
-  Menu,
-  X,
-  ChevronDown,
-  ChevronUp,
-  ExternalLink,
-  Filter
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+            <div>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Purpose</h3>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Nuestro propósito
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="text-gray-700">
+                    This directory was created to help immigrant communities and their allies find 
+                    resources, legal support, and businesses that stand in solidarity with their rights. 
+                    In times of increased immigration enforcement, knowing where to turn for help is 
+                    critical.
+                  </p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Este directorio fue creado para ayudar a las comunidades inmigrantes y a sus aliados a encontrar recursos, apoyo legal y negocios solidarios con sus derechos. En tiempos de mayor cumplimiento migratorio, es fundamental saber a dónde acudir.
+                </TooltipContent>
+              </Tooltip>
+            </div>
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -268,10 +275,17 @@ function App() {
 
           {/* Tucson Organizations */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <Heart className="h-6 w-6 text-red-600" />
-              Tucson Organizations & Services
-            </h3>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                  <Heart className="h-6 w-6 text-red-600" />
+                  Tucson Organizations & Services
+                </h3>
+              </TooltipTrigger>
+              <TooltipContent>
+                Organizaciones y servicios de Tucson
+              </TooltipContent>
+            </Tooltip>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getTucsonOrganizations().slice(0, 6).map((ally) => (
                 <Card 
