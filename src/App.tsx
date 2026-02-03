@@ -491,7 +491,10 @@ function App() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Know Your Rights Resources
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p
+              className="text-lg text-gray-600 max-w-2xl mx-auto"
+              title="Información y recursos esenciales para ayudarte a entender y ejercer tus derechos durante encuentros con inmigración."
+            >
               Essential information and resources to help you understand and exercise your rights 
               during encounters with immigration enforcement.
             </p>
@@ -507,7 +510,10 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 mb-4">
+                <p
+                  className="text-gray-700 mb-4"
+                  title="Tarjetas imprimibles que te ayudan a ejercer tus derechos constitucionales durante encuentros con ICE. Disponible en más de 20 idiomas."
+                >
                   Printable cards that help you assert your constitutional rights during encounters 
                   with ICE. Available in 20+ languages.
                 </p>
@@ -531,7 +537,10 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 mb-4">
+                <p
+                  className="text-gray-700 mb-4"
+                  title="Guías completas sobre tus derechos en casa, en el trabajo, en público y durante encuentros con ICE. Disponibles en varios idiomas."
+                >
                   Comprehensive guides on your rights at home, at work, in public, and during 
                   ICE encounters. Available in multiple languages.
                 </p>
@@ -555,7 +564,10 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 mb-4">
+                <p
+                  className="text-gray-700 mb-4"
+                  title="Crea un plan de seguridad familiar, designa contactos de emergencia y prepara documentos importantes en caso de detención."
+                >
                   Create a family safety plan, designate emergency contacts, and prepare important 
                   documents in case of detention.
                 </p>
@@ -579,7 +591,10 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 mb-4">
+                <p
+                  className="text-gray-700 mb-4"
+                  title="Encuentra proveedores de servicios legales de inmigración gratuitos y de bajo costo en tu área a través del directorio de Immigration Advocates Network."
+                >
                   Find free and low-cost immigration legal services providers in your area through 
                   the Immigration Advocates Network directory.
                 </p>
@@ -603,7 +618,10 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 mb-4">
+                <p
+                  className="text-gray-700 mb-4"
+                  title="Si ves actividad de ICE en tu comunidad, repórtala a las redes locales de respuesta rápida. En Tucson: llama/envía texto al 520-221-4077."
+                >
                   If you see ICE activity in your community, report it to local rapid response 
                   networks. In Tucson: Call/Text 520-221-4077
                 </p>
@@ -627,7 +645,10 @@ function App() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 mb-4">
+                <p
+                  className="text-gray-700 mb-4"
+                  title="Usa el localizador en línea de detenidos de ICE para encontrar a una persona detenida por inmigración."
+                >
                   Use ICE's online detainee locator system to find someone who has been detained 
                   by immigration enforcement.
                 </p>
@@ -759,7 +780,10 @@ function App() {
           <div className="bg-white rounded-lg shadow-sm p-8 space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Purpose</h3>
-              <p className="text-gray-700">
+              <p
+                className="text-gray-700"
+                title="Este directorio fue creado para ayudar a las comunidades inmigrantes y a sus aliados a למצוא recursos, apoyo legal y negocios solidarios con sus derechos. En tiempos de mayor cumplimiento migratorio, es fundamental saber a dónde acudir."
+              >
                 This directory was created to help immigrant communities and their allies find 
                 resources, legal support, and businesses that stand in solidarity with their rights. 
                 In times of increased immigration enforcement, knowing where to turn for help is 
@@ -795,7 +819,10 @@ function App() {
 
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Disclaimer</h3>
-              <p className="text-gray-700 text-sm">
+              <p
+                className="text-gray-700 text-sm"
+                title="Este directorio es solo informativo. La inclusión no constituye asesoría legal ni respaldo. Verifica la información con las organizaciones listadas. Para asesoría legal, consulta con un abogado de inmigración calificado."
+              >
                 This directory is for informational purposes only. Inclusion in this list does not 
                 constitute legal advice or endorsement. Please verify all information directly with 
                 the organizations listed. For legal advice, consult with a qualified immigration attorney.
@@ -806,7 +833,10 @@ function App() {
 
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Add or Update a Listing</h3>
-              <p className="text-gray-700">
+              <p
+                className="text-gray-700"
+                title="Si conoces una organización o negocio que deba incluirse en este directorio, o necesitas actualizar información existente, contáctanos."
+              >
                 If you know of an organization or business that should be included in this directory, 
                 or if you need to update existing information, please contact us.
               </p>
