@@ -260,10 +260,17 @@ function App() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Tucson Anti-ICE Allies
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Highlighting local businesses and organizations in Tucson, Arizona that have 
-              demonstrated solidarity with immigrant communities.
-            </p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Highlighting local businesses and organizations in Tucson, Arizona that have 
+                  demonstrated solidarity with immigrant communities.
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>
+                Destacando negocios locales y organizaciones en Tucson, Arizona que han demostrado solidaridad con las comunidades inmigrantes.
+              </TooltipContent>
+            </Tooltip>
           </div>
 
           {/* Tucson Organizations */}
